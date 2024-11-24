@@ -1,16 +1,3 @@
-variable "Var_Network" {
-  type = map(object({
-    name                = string
-    resource_group_name = string
-    location            = string
-    
-    VN_subnet = map(object({
-      name             = string
-      address_prefixes = list(string)
-    }))
-  }))
-}
-
 resource "azurerm_virtual_network" "Azure_Network" {
   for_each            = var.Var_Network
   name                = each.value.name
